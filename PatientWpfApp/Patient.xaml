@@ -57,7 +57,5 @@
             <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"  Text="" Margin="5"></TextBox>
         </Grid>
 
-
-
     </Grid>
 </Controls:MetroWindow>
