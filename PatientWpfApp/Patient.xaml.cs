@@ -29,10 +29,9 @@ namespace PatientWpfApp
     /// </summary>
     public partial class Patient : MetroWindow
     {
-        public Patient(PatientViewModel viewModel)
+        public Patient()
         {
             InitializeComponent();
-            myGrid.DataContext = viewModel;
         }
     }
 }

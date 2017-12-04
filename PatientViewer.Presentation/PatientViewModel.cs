@@ -25,6 +25,7 @@ namespace PatientViewer.Presentation
                 RaisePropertyChanged("Patients");
             }
         }
+
         private readonly ICommand _addPatientCmd;
         private readonly ICommand _deletePatientCmd;
         private readonly ICommand _savePatientCmd;
@@ -32,6 +33,15 @@ namespace PatientViewer.Presentation
         public PatientViewModel(IPatientRepository repository)
         {
             Repository = repository;
+        }
+
+        public PatientViewModel()
+        {
+            IList<Patient> ps = new List<Patient>()
+            {
+                new Patient(){ FirstName = "Frederick", LastName = "Mosteller", PhoneNumber = "506-555-0149", MobileNumber = "418-555-0126", Address = "111 Davie Street, Toronto ON, V5H 1P1"}
+            };
+            _patients = ps;
         }
 
         #region Commands
