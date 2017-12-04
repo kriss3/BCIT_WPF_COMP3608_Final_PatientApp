@@ -25,12 +25,20 @@ namespace PatientViewer.Presentation
                 RaisePropertyChanged("Patients");
             }
         }
+        private readonly ICommand _addPatientCmd;
+        private readonly ICommand _deletePatientCmd;
+        private readonly ICommand _savePatientCmd;
+
         public PatientViewModel(IPatientRepository repository)
         {
             Repository = repository;
         }
 
         #region Commands
+
+        public ICommand AddPatientCmd { get { return _addPatientCmd; } }
+        public ICommand DeletePatientCmd { get { return _deletePatientCmd; } }
+        public ICommand SavePatientCmd { get { return _savePatientCmd; } }
 
         #region Refresh command
 

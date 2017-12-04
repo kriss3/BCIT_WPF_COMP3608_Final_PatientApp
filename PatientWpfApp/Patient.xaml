@@ -5,7 +5,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PatientWpfApp"
-        xmlns:vm="vm:PatientViewer.Presentation"
         mc:Ignorable="d"
         Title="MainWindow" WindowStartupLocation="CenterScreen" Width="500" Height="350">
     <Grid Name="myGrid">
@@ -25,9 +24,9 @@
                FontSize="20"
                Text="Patient Form" HorizontalAlignment="Center"></TextBlock>
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical">
-            <Button  Margin="5" Content="{Binding Source={StaticResource Add}}" ></Button>
-            <Button  Margin="5" Content="{Binding Source={StaticResource Save}}" ></Button>
-            <Button  Margin="5" Content="{Binding Source={StaticResource Del}}" ></Button>
+            <Button  Margin="5" Content="{Binding Source={StaticResource Add}}" Command="{Binding AddPatientCmd}" ></Button>
+            <Button  Margin="5" Content="{Binding Source={StaticResource Save}}" Command="{Binding SavePatientCmd}" ></Button>
+            <Button  Margin="5" Content="{Binding Source={StaticResource Del}}" Command="{Binding DeletePatientCmd}" ></Button>
 
         </StackPanel>
 
