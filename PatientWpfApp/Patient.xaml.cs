@@ -13,7 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using PatientRepository.SQL;
+using PatientRepository.Interface;
+using PatientViewer.Presentation;
 using MahApps.Metro.Controls;
+
 
 
 namespace PatientWpfApp
@@ -25,9 +29,10 @@ namespace PatientWpfApp
     /// </summary>
     public partial class Patient : MetroWindow
     {
-        public Patient()
+        public Patient(PatientViewModel viewModel)
         {
             InitializeComponent();
+            myGrid.DataContext = viewModel;
         }
     }
 }

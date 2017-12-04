@@ -5,12 +5,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PatientWpfApp"
+        xmlns:vm="vm:PatientViewer.Presentation"
         mc:Ignorable="d"
         Title="MainWindow" WindowStartupLocation="CenterScreen" Width="500" Height="350">
-    <Grid>
+    <Grid Name="myGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>

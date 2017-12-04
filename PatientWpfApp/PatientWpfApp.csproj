@@ -100,5 +100,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PatientRepository.Interface\PatientRepository.Interface.csproj">
+      <Project>{a795187f-544e-483e-b4c5-a263be1d2a11}</Project>
+      <Name>PatientRepository.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PatientRepository.SQL\PatientRepository.SQL.csproj">
+      <Project>{5442bb56-d174-4a6b-99cd-8d9753475390}</Project>
+      <Name>PatientRepository.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PatientViewer.Presentation\PatientViewer.Presentation.csproj">
+      <Project>{e080c882-889d-428d-a2f0-f88ba98ad6a8}</Project>
+      <Name>PatientViewer.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PatientViewer.SharedObjects\PatientViewer.SharedObjects.csproj">
+      <Project>{f2498b11-da65-4044-8be5-84d06f7a9e15}</Project>
+      <Name>PatientViewer.SharedObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

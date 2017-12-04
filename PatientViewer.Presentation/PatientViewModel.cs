@@ -1,0 +1,107 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using PatientViewer.SharedObjects;
+using PatientRepository.Interface;
+using System.Windows.Input;
+
+namespace PatientViewer.Presentation
+{
+    public class PatientViewModel : INotifyPropertyChanged
+    {
+        protected IPatientRepository Repository;
+        private IEnumerable<Patient> _patients;
+        public IEnumerable<Patient> Patients
+        {
+            get { return _patients; }
+            set
+            {
+                if (_patients == value)
+                    return;
+                _patients = value;
+                RaisePropertyChanged("Patients");
+            }
+        }
+        public PatientViewModel(IPatientRepository repository)
+        {
+            Repository = repository;
+        }
+
+        #region Commands
+
+        #region Refresh command
+
+        private RefreshCommand _refreshPatientCommand = new RefreshCommand();
+        public RefreshCommand RefreshPatientCommand
+        {
+            get
+            {
+                if (_refreshPatientCommand.ViewModel == null)
+                    _refreshPatientCommand.ViewModel = this;
+                return _refreshPatientCommand;
+            }
+        }
+
+        public class RefreshCommand : ICommand
+        {
+            public PatientViewModel ViewModel { get; set; }
+            public event EventHandler CanExecuteChanged;
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public void Execute(object parameter)
+            {
+                ViewModel.Patients = ViewModel.Repository.GetPatients();
+            }
+        }
+
+        #endregion Refresh command
+
+        #region Clear commands
+
+        private ClearCommand _clearPatientCommand = new ClearCommand();
+        public ClearCommand ClearPatientCommand
+        {
+            get
+            {
+                if (_clearPatientCommand.ViewModel == null)
+                    _clearPatientCommand.ViewModel = this;
+                return _clearPatientCommand;
+            }
+        }
+        public class ClearCommand : ICommand
+        {
+            public PatientViewModel ViewModel { get; set; }
+            public event EventHandler CanExecuteChanged;
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public void Execute(object parameter)
+            {
+                ViewModel.Patients = new List<Patient>();
+            }
+        }
+
+        #endregion Clear commands
+
+#endregion Commands
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+    }
+}
