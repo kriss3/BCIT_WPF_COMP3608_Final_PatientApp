@@ -6,7 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using PatientViewer.SharedObjects;
 using PatientRepository.Interface;
+using PatientRepository.SQL;
+using PatientRepository.StaticData;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace PatientViewer.Presentation
 {
@@ -25,91 +28,95 @@ namespace PatientViewer.Presentation
                 RaisePropertyChanged("Patients");
             }
         }
+        private Patient selectedPatient;
 
-        private readonly ICommand _addPatientCmd;
-        private readonly ICommand _deletePatientCmd;
-        private readonly ICommand _savePatientCmd;
+        public ICommand AddPatientCmd { get; set; }
+        public ICommand DeletePatientCmd { get; set; }
+        public ICommand SavePatientCmd { get; set; }
 
+        public Patient SelectedPatient
+        {
+            get
+            {
+                return selectedPatient;
+            }
+            set
+            {
+                selectedPatient = value;
+                RaisePropertyChanged("SelectedPatient");
+            }
+        }
+
+        //when I use this ctor application goes into error state
         public PatientViewModel(IPatientRepository repository)
         {
             Repository = repository;
         }
 
+        //this ctor correctly disply record in the UI
         public PatientViewModel()
         {
-            IList<Patient> ps = new List<Patient>()
+            Repository = new StaticRepository();
+            LoadData();
+            LoadCommands();
+        }
+
+        private void LoadData()
+        {
+            try
             {
-                new Patient(){ FirstName = "Frederick", LastName = "Mosteller", PhoneNumber = "506-555-0149", MobileNumber = "418-555-0126", Address = "111 Davie Street, Toronto ON, V5H 1P1"}
-            };
-            _patients = ps;
+                var repo = new SQLRepository();
+                _patients = repo.GetPatients();
+            }
+            catch (Exception ex)
+            {
+                //Log details of exception and proide meaningful information to the end user;
+                var localRepo = new StaticRepository();
+                _patients = localRepo.GetPatients();
+            }
+        }
+
+        private void LoadCommands()
+        {
+            AddPatientCmd = new CustomCommand(AddPatientRecord, CanAdd);
+            DeletePatientCmd = new CustomCommand(DeletePatientRecord, CanDelete);
+            SavePatientCmd = new CustomCommand(SavePatientRecord, CanSave);
         }
 
         #region Commands
 
-        public ICommand AddPatientCmd { get { return _addPatientCmd; } }
-        public ICommand DeletePatientCmd { get { return _deletePatientCmd; } }
-        public ICommand SavePatientCmd { get { return _savePatientCmd; } }
-
-        #region Refresh command
-
-        private RefreshCommand _refreshPatientCommand = new RefreshCommand();
-        public RefreshCommand RefreshPatientCommand
+        private bool CanAdd(object obj)
         {
-            get
-            {
-                if (_refreshPatientCommand.ViewModel == null)
-                    _refreshPatientCommand.ViewModel = this;
-                return _refreshPatientCommand;
-            }
+            return true;
+        }
+        private void AddPatientRecord(object obj)
+        {
+            //this will run when Add button is called
+            SelectedPatient.FirstName = "";
         }
 
-        public class RefreshCommand : ICommand
+        private bool CanDelete(object obj)
         {
-            public PatientViewModel ViewModel { get; set; }
-            public event EventHandler CanExecuteChanged;
-            public bool CanExecute(object parameter)
-            {
-                return true;
-            }
-
-            public void Execute(object parameter)
-            {
-                ViewModel.Patients = ViewModel.Repository.GetPatients();
-            }
+            return true;
         }
 
-        #endregion Refresh command
-
-        #region Clear commands
-
-        private ClearCommand _clearPatientCommand = new ClearCommand();
-        public ClearCommand ClearPatientCommand
+        private void DeletePatientRecord(object obj)
         {
-            get
-            {
-                if (_clearPatientCommand.ViewModel == null)
-                    _clearPatientCommand.ViewModel = this;
-                return _clearPatientCommand;
-            }
-        }
-        public class ClearCommand : ICommand
-        {
-            public PatientViewModel ViewModel { get; set; }
-            public event EventHandler CanExecuteChanged;
-            public bool CanExecute(object parameter)
-            {
-                return true;
-            }
-
-            public void Execute(object parameter)
-            {
-                ViewModel.Patients = new List<Patient>();
-            }
+            Repository.DeletePatient(SelectedPatient.LastName);
+            _patients = Repository.ReloadPatients();
         }
 
-        #endregion Clear commands
+        private bool CanSave(object obj)
+        {
+            return true;
+        }
 
-#endregion Commands
+        private void SavePatientRecord(object obj)
+        {
+            Repository.UpdatePatient(SelectedPatient.LastName, SelectedPatient);
+        }
+
+        #endregion Commands
 
         #region INotifyPropertyChanged Members
 

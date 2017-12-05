@@ -14,5 +14,7 @@ namespace PatientRepository.Interface
         void UpdatePatient(string lastName, Patient updatedPatient);
 
         void DeletePatient(string lastName);
+
+        IEnumerable<Patient> ReloadPatients();
     }
 }

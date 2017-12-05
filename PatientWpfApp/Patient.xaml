@@ -5,9 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PatientWpfApp"
-         
         xmlns:Presentation="clr-namespace:PatientViewer.Presentation;assembly=PatientViewer.Presentation" x:Class="PatientWpfApp.Patient"
-         
         mc:Ignorable="d"
         Title="MainWindow" WindowStartupLocation="CenterScreen" Width="500" Height="350">
 
@@ -37,8 +35,8 @@
             <Button  Margin="5" Content="{Binding Source={StaticResource Del}}" Command="{Binding DeletePatientCmd}" />
         </StackPanel>
 
-        <Border Background="Turquoise" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3"/>
-        <Grid Grid.Column="2" Grid.Row="1" Margin="5">
+        <Border Background="Turquoise" Grid.Row="1" Grid.Column="1" Margin="0.2,0.2,-0.4,155.8"/>
+        <Grid Grid.Column="1" Grid.Row="1" Margin="5.2,5.2,4.6,155.8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -51,16 +49,18 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Content="First Name:" Margin="5"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Patients/FirstName}" Margin="5"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedPatient.FirstName, Mode=TwoWay}" Margin="5"/>
             <Label Grid.Column="0" Grid.Row="1"  Content="Last Name:" Margin="5"/>
-            <TextBox Grid.Column="1" Grid.Row="1"  Text="{Binding Path=Patients/LastName}" Margin="5"/>
+            <TextBox Grid.Column="1" Grid.Row="1"  Text="{Binding SelectedPatient.LastName, Mode=TwoWay}" Margin="5"/>
 
             <Label Grid.Column="2" Grid.Row="0"  Content="Phone Number:" Margin="5"/>
-            <TextBox Grid.Column="3" Grid.Row="0"  Text="{Binding Path=Patients/PhoneNumber}" Margin="5"/>
+            <TextBox Grid.Column="3" Grid.Row="0"  Text="{Binding SelectedPatient.PhoneNumber, Mode=TwoWay}" Margin="5"/>
             <Label Grid.Column="2" Grid.Row="1"  Content="Cell Number:" Margin="5"/>
-            <TextBox Grid.Column="3" Grid.Row="1"  Text="{Binding Patients/MobileNumber}" Margin="5"/>
+            <TextBox Grid.Column="3" Grid.Row="1"  Text="{Binding SelectedPatient.MobileNumber, Mode=TwoWay}" Margin="5"/>
             <Label Grid.Column="0" Grid.Row="2" Content="Address:" Margin="5"/>
-            <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"  Text="{Binding Path=Patients/Address}" Margin="5"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3"  Text="{Binding SelectedPatient.Address, Mode=TwoWay}" Margin="5"/>
         </Grid>
+        <DataGrid SelectedIndex="0" ItemsSource="{Binding Patients}" SelectedItem="{Binding SelectedPatient}" Grid.Column="1" HorizontalAlignment="Left" Height="151" Margin="10.2,133.2,0,-0.2" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="413"/>
+
     </Grid>
 </Controls:MetroWindow>

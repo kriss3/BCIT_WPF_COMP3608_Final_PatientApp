@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E080C882-889D-428D-A2F0-F88BA98AD6A8}</ProjectGuid>
+    <ProjectGuid>{59440741-9B21-4D5E-96E3-202A3F71CA1B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PatientViewer.Presentation</RootNamespace>
-    <AssemblyName>PatientViewer.Presentation</AssemblyName>
+    <RootNamespace>PatientRepository.StaticData</RootNamespace>
+    <AssemblyName>PatientRepository.StaticData</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,7 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,26 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomCommand.cs" />
-    <Compile Include="PatientViewModel.cs" />
+    <Compile Include="StaticRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PatientRepository.Interface\PatientRepository.Interface.csproj">
-      <Project>{a795187f-544e-483e-b4c5-a263be1d2a11}</Project>
+      <Project>{A795187F-544E-483E-B4C5-A263BE1D2A11}</Project>
       <Name>PatientRepository.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PatientRepository.SQL\PatientRepository.SQL.csproj">
-      <Project>{5442bb56-d174-4a6b-99cd-8d9753475390}</Project>
-      <Name>PatientRepository.SQL</Name>
     </ProjectReference>
     <ProjectReference Include="..\PatientViewer.SharedObjects\PatientViewer.SharedObjects.csproj">
       <Project>{f2498b11-da65-4044-8be5-84d06f7a9e15}</Project>
       <Name>PatientViewer.SharedObjects</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repository.StaticData\PatientRepository.StaticData.csproj">
-      <Project>{59440741-9b21-4d5e-96e3-202a3f71ca1b}</Project>
-      <Name>PatientRepository.StaticData</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

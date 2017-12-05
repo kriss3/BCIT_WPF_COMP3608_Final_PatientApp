@@ -16,6 +16,7 @@ namespace PatientRepository.SQL
         {
             DbSetup();
         }
+
         public SQLRepository()
         {
             DbSetup();
@@ -107,6 +108,11 @@ namespace PatientRepository.SQL
             }
         }
 
+        public IEnumerable<Patient> ReloadPatients()
+        {
+            return GetPatients();
+        }
+
         private DbPatient GetDbPatient(PatientModelContainer context, string lastName)
         {
             DbPatient dbPatientFound = null;
@@ -134,6 +140,7 @@ namespace PatientRepository.SQL
             using (var context = new PatientModelContainer())
             {
                 Database.SetInitializer(new DbSeeder());
+                //without below database/table is created but data is not populated;
                 var data = from d in context.DbPatients select d;
             }
         }

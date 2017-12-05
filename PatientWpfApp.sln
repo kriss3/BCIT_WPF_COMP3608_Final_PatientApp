@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientWpfApp", "PatientWpfApp\PatientWpfApp.csproj", "{D58ECB6B-7E00-49D2-9609-B1510AEF4007}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8623FE0D-0EC3-4CF5-B22C-6F2781AFD49A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{D4666A8F-D6D5-408B-A12D-3ED88F712C44}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationView", "ApplicationView", "{CCDA50AC-418F-4973-BFE8-02BA35497675}"
@@ -22,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientViewer.Presentation", "PatientViewer.Presentation\PatientViewer.Presentation.csproj", "{E080C882-889D-428D-A2F0-F88BA98AD6A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientRepository.Interface", "PatientRepository.Interface\PatientRepository.Interface.csproj", "{A795187F-544E-483E-B4C5-A263BE1D2A11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientRepository.StaticData", "Repository.StaticData\PatientRepository.StaticData.csproj", "{59440741-9B21-4D5E-96E3-202A3F71CA1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +49,10 @@ Global
 		{A795187F-544E-483E-B4C5-A263BE1D2A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A795187F-544E-483E-B4C5-A263BE1D2A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A795187F-544E-483E-B4C5-A263BE1D2A11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59440741-9B21-4D5E-96E3-202A3F71CA1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59440741-9B21-4D5E-96E3-202A3F71CA1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59440741-9B21-4D5E-96E3-202A3F71CA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59440741-9B21-4D5E-96E3-202A3F71CA1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +63,7 @@ Global
 		{5442BB56-D174-4A6B-99CD-8D9753475390} = {FBB8D63C-1ECA-46CD-9E14-2D1A17761472}
 		{E080C882-889D-428D-A2F0-F88BA98AD6A8} = {D4666A8F-D6D5-408B-A12D-3ED88F712C44}
 		{A795187F-544E-483E-B4C5-A263BE1D2A11} = {FBB8D63C-1ECA-46CD-9E14-2D1A17761472}
+		{59440741-9B21-4D5E-96E3-202A3F71CA1B} = {FBB8D63C-1ECA-46CD-9E14-2D1A17761472}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3E490D71-8115-4FA5-BC0F-82226A94B277}
