@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PatientViewer.SharedObjects;
-using PatientRepository.Interface;
+﻿using PatientRepository.Interface;
 using PatientRepository.SQL;
 using PatientRepository.StaticData;
+using PatientViewer.SharedObjects;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Input;
-using System.Collections.ObjectModel;
 
 namespace PatientViewer.Presentation
 {
+    /// <summary>
+    /// Patient ViewModel class;
+    /// Krzysztof Szczurowski
+    /// Repo: https://github.com/kriss3/BCIT_WPF_COMP3608_Final_PatientApp.git
+    /// </summary>
     public class PatientViewModel : INotifyPropertyChanged
     {
+        #region Members
+
         protected IPatientRepository Repository;
         private IEnumerable<Patient> _patients;
         public IEnumerable<Patient> Patients
@@ -47,20 +50,26 @@ namespace PatientViewer.Presentation
             }
         }
 
+        #endregion Members
+
         //when I use this ctor application goes into error state
         public PatientViewModel(IPatientRepository repository)
         {
             Repository = repository;
         }
 
-        //this ctor correctly disply record in the UI
+        //this ctor correctly disply records in the UI
         public PatientViewModel()
         {
-            Repository = new StaticRepository();
             LoadData();
             LoadCommands();
         }
 
+        //Trying to using SQL Repository but thowing error regarding lack of connection to DB?
+        //handling this by loading data from Static Repository;
+        //ToDo: check why SQLRepository cannot find connection to DB?
+
+        #region Private Methods
         private void LoadData()
         {
             try
@@ -83,6 +92,8 @@ namespace PatientViewer.Presentation
             SavePatientCmd = new CustomCommand(SavePatientRecord, CanSave);
         }
 
+        #endregion Private Methods
+        
         #region Commands
 
         private bool CanAdd(object obj)
@@ -92,7 +103,7 @@ namespace PatientViewer.Presentation
         private void AddPatientRecord(object obj)
         {
             //this will run when Add button is called
-            SelectedPatient.FirstName = "";
+            //for now inline editing of the row will Edit/Save data to the static List<Patient>
         }
 
         private bool CanDelete(object obj)

@@ -1,13 +1,16 @@
 ﻿using PatientRepository.Interface;
+using PatientViewer.SharedObjects;
 using System;
 using System.Collections.Generic;
-using PatientViewer.SharedObjects;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PatientRepository.StaticData
 {
+    /// <summary>
+    /// Static Repository to get data when SQL Repository is not available;
+    /// Krzysztof Szczurowski
+    /// Repo: https://github.com/kriss3/BCIT_WPF_COMP3608_Final_PatientApp.git
+    /// </summary>
     public class StaticRepository : IPatientRepository
     {
         private IEnumerable<Patient> pList;

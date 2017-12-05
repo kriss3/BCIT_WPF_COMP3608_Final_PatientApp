@@ -1,17 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
+﻿using PatientRepository.Interface;
 using PatientViewer.SharedObjects;
-using PatientRepository.Interface;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 
 namespace PatientRepository.SQL
 {
+    /// <summary>
+    /// SQL Repository;
+    /// Used Model First approach;
+    /// Krzysztof Szczurowski
+    /// Repo: https://github.com/kriss3/BCIT_WPF_COMP3608_Final_PatientApp.git
+    /// </summary>
     public class SQLRepository : IPatientRepository
     {
+        /// <summary>
+        /// This project can be run on its own;
+        /// It will generate Database: MedicalDb with Tbl: dbo.Patients;
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             DbSetup();
@@ -21,6 +29,11 @@ namespace PatientRepository.SQL
         {
             DbSetup();
         }
+
+        /// <summary>
+        /// This method will call into DbSeeder class (below) that contains 
+        /// overridden Seed method to populate dbo.Patients table;
+        /// </summary>
         private static void DbSetup()
         {
             var ctx = new PatientModelContainer();

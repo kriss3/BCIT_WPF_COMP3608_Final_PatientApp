@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PatientViewer.SharedObjects
+﻿namespace PatientViewer.SharedObjects
 {
+    /// <summary>
+    /// Patient Model class;
+    /// Krzyszot Szczurowski
+    /// Repo: https://github.com/kriss3/BCIT_WPF_COMP3608_Final_PatientApp.git
+    /// </summary>
     public class Patient
     {
         public string FirstName { get; set; }

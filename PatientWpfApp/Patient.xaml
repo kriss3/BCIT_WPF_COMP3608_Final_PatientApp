@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:PatientWpfApp"
         xmlns:Presentation="clr-namespace:PatientViewer.Presentation;assembly=PatientViewer.Presentation" x:Class="PatientWpfApp.Patient"
         mc:Ignorable="d"
-        Title="MainWindow" WindowStartupLocation="CenterScreen" Width="500" Height="350">
+        Title="Krzysztof Szczurowski COMP 3608" WindowStartupLocation="CenterScreen" Width="500" Height="350">
 
     <Controls:MetroWindow.DataContext>
         <Presentation:PatientViewModel/>
